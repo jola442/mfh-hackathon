@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+@layer components {
+  .max-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .input {
+    @apply sm:flex-1 max-sm:w-full text-base leading-normal text-slate-gray pl-5 max-sm:p-5 outline-none sm:border-none border max-sm:border-slate-gray max-sm:rounded-full;
+  }
+}
+
+@layer utilities {
+  .padding {
+    @apply sm:px-16 px-8 sm:py-24 py-12;
+  }
+
+  .padding-x {
+    @apply sm:px-16 px-8;
+  }
+
+  .padding-y {
+    @apply sm:py-24 py-12;
+  }
+
+  .padding-l {
+    @apply sm:pl-16 pl-8;
+  }
+
+  .padding-r {
+    @apply sm:pr-16 pr-8;
+  }
+
+  .padding-t {
+    @apply sm:pt-24 pt-12;
+  }
+
+  .padding-b {
+    @apply sm:pb-24 pb-12;
+  }
+
+  .info-text {
+    @apply font-montserrat text-slate-gray text-lg leading-7;
+  }
+
+  .nav-container{
+    @apply overflow-hidden max-h-0 transition-all duration-300 ease-in-out
+  }
+
+  .open{
+    @apply max-h-[500px]
+  }
+
+  .desktop-nav {
+    @apply flex-1 flex justify-end items-center gap-16 max-lg:hidden;
+  }
+
+  .mobile-nav {
+    @apply flex-1 flex-col w-full justify-center items-center 
+      h-auto hidden max-lg:block bg-[#f9f9f9] shadow-lg shadow-black/30 
+      rounded-lg p-5 gap-4 transition-all duration-300 ease-in-out;
+  }
+
+  .mobile-nav li {
+    @apply w-full text-center;
+  }
+
+  .mobile-nav a {
+    @apply font-fjalla text-2xl py-3 px-6 w-full 
+      rounded-md transition-colors duration-200 ease-in-out;
+  }
+
+  .mobile-nav li:hover {
+    @apply bg-gray-200;
+  }
+}
