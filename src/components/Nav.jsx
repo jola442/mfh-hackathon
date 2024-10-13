@@ -31,7 +31,7 @@ const Nav = () => {
     // }
 
     return (
-        <header className="absolute padding-x py-8 z-10 w-full">
+        <header className="relative padding-x py-8 z-10 w-full">
           <nav className="flex justify-between items-center max-container w-full">
             <a href="/">
               <img src={rccgLogo} alt="Logo" width={120} height={100} />
