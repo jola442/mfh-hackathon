@@ -2,11 +2,20 @@ import { facebook, instagram, shieldTick, support, truckFast, twitter } from "..
 import { bigShoe1, bigShoe2, bigShoe3, customer1, customer2, shoe4, shoe5, shoe6, shoe7, thumbnailShoe1, thumbnailShoe2, thumbnailShoe3 } from "../assets/images";
 
 export const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#sign-in", label: "Sign In" },
+    { href: "/", label: "Home" },
+    { href: "/signIn", label: "Sign In" },
+    { href: "/events", label: "Events"},
     // { href: "#products", label: "Products" },
     // { href: "#contact-us", label: "Contact Us" },
 ];
+// const {name, location, date, fee, poster, recurring}
+export const events = [
+    { name: "Big Give", location:"Sandalwood Park", date:"10/20/24", fee:"Free", poster:"src/assets/images/event1.jpeg", recurring:false},
+    { name: "She Leads", location:"1724 Bank St", date:"10/20/24", fee:"Free", poster:"src/assets/images/event2.jpeg", recurring:false},
+    { name: "Potluck", location:"1724 Bank St", date:"10/20/24", fee:"Free", poster:"src/assets/images/event3.jpg", recurring:false},
+    { name: "Archery Tag", location:"Archery Games", date:"10/20/24", fee:"Free", poster:"src/assets/images/event4.jpg", recurring:false},
+    // { name: "Big Give", location:"Sandalwood Park", date:"10/20/24", fee:"Free", poster:"../assets/images/event5", recurring:false}
+]
 
 export const shoes = [
     {

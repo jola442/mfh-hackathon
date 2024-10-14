@@ -23,22 +23,31 @@ export default {
         fjalla: ['Fjalla One', 'sans-serif']
       },
       colors: {
-        'primary': "#00226B",
+        'primary': "rgba(0, 60, 117)",
+        'secondary': "#7ab6b5",
+        'reddish': "#c6416f",
         "coral-red": "#FF6452",
         "slate-gray": "#6D6D6D",
         "pale-blue": "#F5F6FF",
         "white-400": "rgba(255, 255, 255, 0.80)"
       },
       boxShadow: {
-        '3xl': '0 10px 40px rgba(0, 0, 0, 0.1)'
+        neumorphic: '8px 8px 15px rgba(163, 163, 163, 0.7), -8px -8px 15px rgba(255, 255, 255, 0.8)',
+        neumorphicHover: '4px 4px 8px rgba(163, 163, 163, 0.7), -4px -4px 8px rgba(255, 255, 255, 0.8)'
+      },
+
+      borderRadius: {
+        'neumorphic': '12px',
       },
       backgroundImage: {
-        'hero': "url('assets/images/collection-background.svg')",
-        'card': "url('assets/images/thumbnail-background.svg')",
+        'bright-gradient': 'linear-gradient(135deg, #5a8df4, #92e8e4, #ffecd1)'
       },
       screens: {
         "wide": "1440px"
-      }
+      },
+      width: {
+        'min-1000': 'min(1000px, 100%)',
+      },
     },
   },
   plugins: [],
