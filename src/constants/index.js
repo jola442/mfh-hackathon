@@ -5,6 +5,7 @@ export const navLinks = [
     { href: "/", label: "Home" },
     { href: "/signIn", label: "Sign In" },
     { href: "/events", label: "Events"},
+    { href: "/admin", label: "Admin"},
     // { href: "#products", label: "Products" },
     // { href: "#contact-us", label: "Contact Us" },
 ];
@@ -13,7 +14,10 @@ export const events = [
     { name: "Big Give", location:"Sandalwood Park", date:"10/20/24", fee:"Free", poster:"src/assets/images/event1.jpeg", recurring:false},
     { name: "She Leads", location:"1724 Bank St", date:"10/20/24", fee:"Free", poster:"src/assets/images/event2.jpeg", recurring:false},
     { name: "Potluck", location:"1724 Bank St", date:"10/20/24", fee:"Free", poster:"src/assets/images/event3.jpg", recurring:false},
-    { name: "Archery Tag", location:"Archery Games", date:"10/20/24", fee:"Free", poster:"src/assets/images/event4.jpg", recurring:false},
+    { name: "Archery Tag", location:"Archery Games", date:"10/20/24", fee:"Free", poster:"src/assets/images/event6.jpg", recurring:false},
+    { name: "Picnic", location:"1724 Bank St", date:"10/20/24", fee:"Free", poster:"src/assets/images/event5.jpg", recurring:false},
+    { name: "Touch Grass", location:"Grass", date:"10/20/24", fee:"Free", poster:"src/assets/images/event4.jpg", recurring:false},
+    { name: "Archery Tag", location:"Archery Games", date:"10/20/24", fee:"Free", poster:"src/assets/images/event6.jpg", recurring:false},
     // { name: "Big Give", location:"Sandalwood Park", date:"10/20/24", fee:"Free", poster:"../assets/images/event5", recurring:false}
 ]
 

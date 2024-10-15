@@ -25,18 +25,30 @@ body {
 
 
 @layer components {
-  .max-container {
+  /* .max-container {
     max-width: 1440px;
     margin: 0 auto;
-  }
-
+  } */
   .input {
     @apply pl-5 text-base leading-normal border outline-none sm:flex-1 max-sm:w-full text-slate-gray max-sm:p-5 sm:border-none max-sm:border-slate-gray max-sm:rounded-full;
   }
 
   .bento-box{
-    @apply flex items-center justify-center max-container p-20 my-10 mx-auto lg:text-4xl md:text-[5vw] max-md:text-[4vw] transition-shadow duration-300 ease-in-out bg-primary border border-blue-300 rounded-[20px] shadow-md font-fjalla h-[15vh] hover:shadow-lg text-white
+    @apply flex items-center justify-center p-20 my-10 mx-auto max-lg:p-5 lg:text-4xl md:text-[5vw] max-md:text-[4vw] transition-shadow duration-300 ease-in-out bg-primary border border-blue-300 rounded-[20px] shadow-md font-fjalla h-[15vh] hover:shadow-lg text-white
   }
+
+  .my-swiper .swiper-pagination-bullet {
+    @apply w-[20px] h-[20px] bg-blue-500 opacity-70 mx-10 transition-opacity duration-300; /* Adjust size and color */
+  }
+  
+  .my-swiper .swiper-pagination-bullet-active {
+    @apply opacity-100; /* Fully visible for the active bullet */
+  }
+
+  .swiper-button-next{
+    @apply w-[30px]
+  }
+
 }
 
 @layer utilities {
@@ -111,6 +123,23 @@ body {
   }
 
   .label{
-    @apply text-[2vw]
+    @apply text-[2vw] text-gray-700
   }
+
+  .input-field{
+    @apply rounded-lg p-2 text-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary
+  }
+
+  .custom-quill .ql-container {
+    @apply min-h-[200px] bg-gray-100 rounded-lg p-3 border border-gray-300;
+  }
+  
+  .custom-quill .ql-editor {
+    @apply text-lg leading-relaxed text-gray-800;
+  }
+  
+  .custom-quill .ql-toolbar {
+    @apply bg-gray-200 rounded-t-lg;
+  }
+  
 }

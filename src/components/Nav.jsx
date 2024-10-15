@@ -24,11 +24,7 @@ const Nav = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => setIsOpen(!isOpen)
-    const closeMenu = () => setIsOpen(false); // Force menu to close
     
-    // function toggleMenu(){
-    //     setIsOpen( (prevValue) => !prevValue)
-    // }
 
     return (
         <header className="relative padding-x py-8 z-10 w-full">

@@ -16,16 +16,16 @@ const Event = () => {
   }
 
   return (
-    <main className='relative background-overlay min-h-screen'>
-      <section className='flex justify-center'>
-        <div className='flex flex-col justify-center items-center w-[60vw] p-10'> 
+    <main className='relative background-overlay min-h-screen flex justify-center'>
+      <section className='flex justify-center w-4/5'>
+        <div className='flex flex-col justify-center items-center w-full p-10'> 
         <div className="flex flex-1 justify-center my-10 w-full rounded-[50px] relative overflow-hidden">
   {/* Glassmorphism Background Layer */}
   <div className="absolute inset-0 bg-primary bg-opacity-30 backdrop-blur-lg shadow-xl z-0"></div>
 
   {/* Image Content */}
   <div className="w-3/4 flex justify-center z-10">
-    <img className="w-full h-[40vh] object-cover rounded-[30px]" src={event.poster} alt="Event Poster" />
+    <img className="w-full h-[45vh] object-cover rounded-[30px]" src={event.poster} alt="Event Poster" />
   </div>
 </div>
 
