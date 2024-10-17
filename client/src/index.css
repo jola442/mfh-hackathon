@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply box-border; /* Applies border-box to all elements */
+}
+
+html, body {
+  @apply min-h-screen w-full;
+}
+
+body {
+  @apply bg-[radial-gradient(125%_125%_at_50%_10%,#ffffff_40%,#60a5fa_100%)] bg-cover bg-fixed bg-center bg-white font-fjalla;
+}
+/* 
+body {
+  @apply min-h-screen bg-bright-gradient bg-cover bg-fixed bg-center text-black font-fjalla;
+  margin: 0;
+} */
+
+#root {
+  @apply min-h-screen;
+}
+
+
+@layer components {
+  /* .max-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  } */
+  .input {
+    @apply pl-5 text-base leading-normal border outline-none sm:flex-1 max-sm:w-full text-slate-gray max-sm:p-5 sm:border-none max-sm:border-slate-gray max-sm:rounded-full;
+  }
+
+  .bento-box{
+    @apply flex items-center justify-center p-20 my-10 mx-auto max-lg:p-5 lg:text-4xl md:text-[5vw] max-md:text-[4vw] transition-shadow duration-300 ease-in-out bg-primary border border-blue-300 rounded-[20px] shadow-md font-fjalla h-[15vh] hover:shadow-lg text-white
+  }
+
+  /* .my-swiper .swiper{
+    @apply w-4/5 relative
+  } */
+
+  .my-swiper .swiper-wrapper{}
+
+  .my-swiper .swiper-pagination-bullet {
+    @apply w-[20px] h-[20px] bg-blue-500 opacity-70 mx-10 transition-opacity duration-300; /* Adjust size and color */
+  }
+  
+  .my-swiper .swiper-pagination-bullet-active {
+    @apply opacity-100; /* Fully visible for the active bullet */
+  }
+
+  .swiper-button-next{
+    @apply z-20 absolute right-0
+  }
+
+  .swiper-button-prev{
+    @apply z-20
+  }
+
+
+}
+
+@layer utilities {
+  .padding {
+    @apply px-8 py-12 sm:px-16 sm:py-24;
+  }
+
+  .padding-x {
+    @apply px-8 sm:px-16;
+  }
+
+  .padding-y {
+    @apply py-12 sm:py-24;
+  }
+
+  .padding-l {
+    @apply pl-8 sm:pl-16;
+  }
+
+  .padding-r {
+    @apply pr-8 sm:pr-16;
+  }
+
+  .padding-t {
+    @apply pt-12 sm:pt-24;
+  }
+
+  .padding-b {
+    @apply pb-12 sm:pb-24;
+  }
+
+  .info-text {
+    @apply text-lg leading-7 font-montserrat text-slate-gray;
+  }
+
+  .nav-container{
+    @apply absolute right-0 top-[120px] overflow-hidden max-h-0 transition-all duration-300 ease-in-out z-10
+  }
+
+  .open{
+    @apply max-h-[500px]
+  }
+
+  .desktop-nav {
+    @apply flex items-center justify-end flex-1 gap-16 max-lg:hidden;
+  }
+
+  .desktop-nav a{
+    @apply md:text-[40px]
+  }
+
+  .desktop-nav a:hover{
+    @apply text-black transition-colors duration-300 ease-in-out
+  }
+
+  .mobile-nav {
+    @apply flex-1 flex-col w-full justify-center items-center 
+      h-auto hidden max-lg:block bg-[#f9f9f9] shadow-lg shadow-black/30 
+      rounded-lg p-5 gap-4 transition-all duration-300 ease-in-out;
+  }
+
+  .mobile-nav li {
+    @apply w-full text-center;
+  }
+
+  .mobile-nav a {
+    @apply w-full px-6 py-3 lg:text-4xl md:text-[4vw] transition-colors duration-200 ease-in-out rounded-md font-fjalla;
+  }
+
+  .mobile-nav li:hover {
+    @apply bg-gray-200;
+  }
+
+  .label{
+    @apply text-[2vw] max-lg:text-[20px] text-gray-700
+  }
+
+  .input-field{
+    @apply rounded-lg p-5 text-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary
+  }
+
+  .custom-quill .ql-container {
+    @apply min-h-[200px] bg-gray-100 rounded-lg p-3 border border-gray-300 font-fjalla text-2xl;
+  }
+  
+  .custom-quill .ql-editor {
+    @apply text-lg leading-relaxed text-gray-800;
+  }
+  
+  .custom-quill .ql-toolbar {
+    @apply bg-gray-200 rounded-t-lg;
+  }
+
+  .photo-input-wrapper input[type=button]{
+    @apply bg-primary
+  }
+  
+}
