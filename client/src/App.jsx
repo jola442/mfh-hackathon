@@ -6,7 +6,7 @@ import Event from './pages/Event';
 import Admin from './pages/Admin';
 import { useEffect, useState } from 'react';
 import { UserContext } from './contexts/UserContext';
-
+import Footer from './components/Footer';
 
 function App() {
   const [user, setUser] = useState(null)
@@ -35,6 +35,7 @@ function App() {
         <Route path="/events/:id" element={<Event/>}></Route>
         <Route path="/admin" element={<Admin/>}></Route>
       </Routes>
+      <Footer></Footer>
     </UserContext.Provider>
   )
 }

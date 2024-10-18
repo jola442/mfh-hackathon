@@ -1,33 +1,45 @@
 import React, { useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
+import axios from "axios"
+import { useNavigate } from 'react-router-dom';
 
 const Admin = () => {
   const [name, setName] = useState('');
-  const [venue, setVenue] = useState('');
+  const [location, setLocation] = useState('');
   const [fee, setFee] = useState('');
   const [date, setDate] = useState('');
   const [photo, setPhoto] = useState(null);
   const [summary, setSummary] = useState('');
   const [description, setDescription] = useState('');
   const [isRecurring, setIsRecurring] = useState(false);
+  const navigate = useNavigate();
 
   const handleFileChange = (e) => {
     setPhoto(e.target.files[0]);
   };
 
-  const addEvent = () => {
-    const eventData = {
-      name,
-      venue,
-      fee,
-      date,
-      photo,
-      summary,
-      description,
-      isRecurring,
-    };
-    console.log('Event Data:', eventData);
+  const addEvent = async () => {
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('location', location);
+    formData.append('fee', fee);
+    formData.append('date', date);
+    formData.append('summary', summary);
+    formData.append('description', description);
+    formData.append('isRecurring', isRecurring);
+    formData.append('photo', photo); // Append photo to form data
+
+    try {
+      const response = await axios.post('http://localhost:5000/events', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      alert("Added event successfully!")
+      navigate("/")
+      console.log(response.data.message);
+    } catch (error) {
+      console.error('Error adding event:', error);
+    }
   };
 
   return (
@@ -47,14 +59,14 @@ const Admin = () => {
           onChange={(e) => setName(e.target.value)}
         />
 
-        <label className="label" htmlFor="venue">Location</label>
+        <label className="label" htmlFor="location">Location</label>
         <input
-          id="venue"
+          id="location"
           className="input-field"
           type="text"
           placeholder="Enter event location"
-          value={venue}
-          onChange={(e) => setVenue(e.target.value)}
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
         />
 
         <label className="label" htmlFor="fee">Fee</label>
@@ -125,7 +137,7 @@ const Admin = () => {
 
       <div>
         <button
-            className="bg-primary text-white text-2xl p-3 rounded-lg"
+            className="button bg-primary hover:bg-blue-500"
             onClick={addEvent}
           >
             Add Event

@@ -78,7 +78,7 @@ const SignIn = () => {
 
           <button
             type="submit"
-            className="bg-secondary text-2xl p-2 rounded-lg text-primary"
+            className="button bg-secondary hover:bg-green-500 text-primary"
           >
             Sign In
           </button>
@@ -88,7 +88,7 @@ const SignIn = () => {
 
         <button
           onClick={register}
-          className="bg-reddish text-2xl p-2 rounded-lg text-white"
+          className="button bg-blue-500 hover:bg-blue-300"
         >
           Register
         </button>

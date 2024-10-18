@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import axios from "axios"
 import { UserContext } from '../contexts/UserContext'
+import ShareButton from './ShareButton'
 
 const Card = ( {event}) => {
   const {_id, name, location, fee, date, photo} = event
@@ -60,13 +61,16 @@ const Card = ( {event}) => {
           <p className='text-xl'>{location}</p>
           <p className='text-xl'>{fee == 0?"Free":"$"+fee}</p>
 
-          <div className='flex justify-end'>
+          <div className='flex justify-around'>
             {!user && <p className='text-secondary text-xl'>Sign in to register </p>}
-            {user && !user.events.includes(_id) && <button className='bg-primary text-white text-2xl p-4 rounded-[20px]' onClick={registerForEvent}>
+            {/* flex items-center px-4 py-2 bg-blue-500 text-white rounded-md 
+hover:bg-blue-600 transition-colors duration-300 */}
+            <ShareButton className="button"></ShareButton>
+            {user && !user.events.includes(_id) && <button className='button bg-primary hover:bg-blue-600' onClick={registerForEvent}>
               Register
             </button>}
 
-            {user && user.events.includes(_id) && <button className='bg-secondary text-white text-2xl p-4 rounded-[20px]' onClick={unRegisterForEvent}>
+            {user && user.events.includes(_id) && <button className='button bg-secondary hover:bg-red-700' onClick={unRegisterForEvent}>
               Unregister
             </button>}
 

@@ -8,6 +8,14 @@ const session = require('express-session');
 const app = express();
 const uri = "mongodb+srv://jolaajayi:jYYBYlnQPEccXwxN@cluster0.pllvr.mongodb.net/";
 
+
+// const corsOptions = {
+//     origin: 'http://localhost:5173', // Your frontend's origin
+//     credentials: true, // Allow cookies and credentials
+//     optionsSuccessStatus: 200, // Handle legacy browsers
+//   };
+// app.use(cors(corsOptions));
+
 // Middleware setup
 app.use(cors());
 app.use(express.json()); // To parse JSON request bodies
@@ -51,17 +59,13 @@ async function handleSignIn(req, res) {
     }
 }
 
-const handleSignOut = async () => {
-    try {
-        await axios.post('http://localhost:5000/logout', {}, { 
-            withCredentials: true, // Include cookies if needed
-        });
-        setUser(null);
-        localStorage.removeItem('user'); // Clear local storage if used
-        navigate('/'); // Redirect to home or login page
-    } catch (error) {
-        console.error('Failed to log out:', error);
-    }
+const handleSignOut = async (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            return res.status(500).json({ message: "Failed to log out" });
+        }
+        res.status(200).json({ message: "Logout successful" });
+    });
 };
 
 

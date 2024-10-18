@@ -13,8 +13,11 @@ const events = [
     { name: "Archery Tag", location: "Archery Games", date: "2024-10-16", fee: 35, photo: "src/assets/images/archery_tag.jpg", isRecurring: false, summary: "Lorem ipsum dolor sit amet.", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
     { name: "Gold Cup", location: "RA Centre", date: "2024-09-23", fee: 0, photo: "src/assets/images/gold_cup.jpg", isRecurring: false, summary: "Lorem ipsum dolor sit amet.", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
     { name: "Wednesday Prayer Meeting", location: "1724 Bank St", date: "2024-08-05", fee: 0, photo: "src/assets/images/weekly_prayers.jpg", isRecurring: true, summary: "Lorem ipsum dolor sit amet.", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-    { name: "Saturday Prayer Meeting", location: "1724 Bank St", date: "2024-09-10", fee: 0, photo: "src/assets/images/weekly_prayers.jpg", isRecurring: true, summary: "Lorem ipsum dolor sit amet.", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
-    { name: "Children's Connect Group", location: "1724 Bank St", date: "2024-09-07", fee: 0, photo: "src/assets/images/children_connect.jpg", isRecurring: true, summary: "Lorem ipsum dolor sit amet.", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }
+    { name: "Saturday Prayer Meeting", location: "1724 Bank St", date: "2024-10-10", fee: 0, photo: "src/assets/images/weekly_prayers.jpg", isRecurring: true, summary: "Lorem ipsum dolor sit amet.", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+    { name: "Children's Connect Group", location: "1724 Bank St", date: "2024-10-11", fee: 0, photo: "src/assets/images/children_connect.jpg", isRecurring: true, summary: "Lorem ipsum dolor sit amet.", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+    { name: "Youth Service", location: "1724 Bank St", date: "2024-10-14", fee: 0, photo: "src/assets/images/youth_service.jpg", isRecurring: true, summary: "Lorem ipsum dolor sit amet.", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+    { name: "Choir Practice", location: "1724 Bank St", date: "2024-10-07", fee: 0, photo: "src/assets/images/choir_practice.jpg", isRecurring: true, summary: "Lorem ipsum dolor sit amet.", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
+    { name: "Main Service", location: "1724 Bank St", date: "2024-10-15", fee: 0, photo: "src/assets/images/main_service.jpg", isRecurring: true, summary: "Lorem ipsum dolor sit amet.", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." },
 ];
 
 try{

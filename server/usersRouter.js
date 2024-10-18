@@ -8,6 +8,9 @@ router.get("/", respondWithUsers);
 // GET a specific user by username
 router.get("/:username", respondWithUser);
 
+// GET a specific user's events
+router.get("/:username/events", respondWithUserEvents);
+
 // PUT - update events for a specific user
 router.put("/:username/events", updateEvents);
 
@@ -35,6 +38,29 @@ async function respondWithUser(req, res) {
     res.status(500).json({ message: "Error retrieving user", error });
   }
 }
+
+// Handler: Get a specific user's events
+async function respondWithUserEvents(req, res) {
+  const { username } = req.params; // Get username from request parameters
+  try {
+    const user = await User.findOne().byUsername(username).populate('events'); // Populate events
+
+    if (!user) {
+      return res.status(404).json({ message: `User '${username}' not found` });
+    }
+
+    // Map the populated events to extract only names and dates
+    const userEvents = user.events.map(event => ({
+      name: event.name, // Assuming the event model has a 'name' field
+      date: event.date, // Assuming the event model has a 'date' field
+    }));
+
+    res.status(200).json(userEvents); // Send back the list of event names and dates
+  } catch (error) {
+    res.status(500).json({ message: "Error retrieving user's events", error });
+  }
+}
+
 
 // Handler: Update user events
 async function updateEvents(req, res) {

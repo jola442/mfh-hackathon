@@ -1,11 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import Card from '../../components/Card';
-import { v4 as uuidv4 } from 'uuid';
 import Slider from '../../components/Slider';
+import ScrollAnimation from '../../components/ScrollAnimation';
+import { UserContext } from '../../contexts/UserContext';
+import EventCalendar from '../../components/EventCalendar';
+import 'react-calendar/dist/Calendar.css';
 
 function Home() {
   const [events, setEvents] = useState([]);
+  const { user } = useContext(UserContext)
 
   // Fetch events from the API
   useEffect(() => {
@@ -36,35 +39,78 @@ function Home() {
   
   console.log("Weekly", weeklyEvents);
 
+   // Define fade-in animation variants
+   const fadeIn = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
+
   return (
     <main className='relative background-overlay min-h-screen flex justify-center'>
-      <section className='flex justify-center w-[80vw]'>
-        <div className='flex-col items-start w-full'>
-          <div className="bento-box">
-            What does my Father's House have in store for you?
-          </div>
+      {/* <ScrollAnimation> */}
+        <section className='flex justify-center w-[80vw]'>
+          <div className='flex-col items-start w-full'>
+            <ScrollAnimation>
+              <div className="bento-box">
+                What does my Father's House have in store for you?
+              </div>
+            </ScrollAnimation>
+     
+            <section className='font-fjalla text-primary'>
+              <div className='text-4xl mx-10 ml-0 my-10'>Upcoming Events</div>
+              {/* Slider for non-recurring events */}
+              {/* <motion.div    initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.5, delay: 0.2, ease: "easeInOut"}} // Duration of the fade-in
+            variants={fadeIn}><Slider events={upcomingEvents} /></motion.div> */}
+            <ScrollAnimation delay={0.5}><Slider events={upcomingEvents}></Slider></ScrollAnimation>
+            </section>
+
+          <ScrollAnimation>
+          <section className="flex gap-5 max-sm:flex-col">
+            {user && <div className='relative h-full max-sm:flex-1 max-sm:w-full w-[35%] font-fjalla'>
+                <EventCalendar></EventCalendar>
+                </div>
+          }
+            {user?  <div className='flex flex-col flex-1 justify-between gap-5'>
+              <div className="bento-box flex-1 w-full">
+                  Join us for our weekly events!
+                </div>
+
+                <div className="bento-box flex-1 w-full">
+                  Don't miss a beat!
+                </div>
+            </div>:
+             <div className='flex flex-1 justify-between gap-5 w-full'>
+             <div className="bento-box flex-1 w-full">
+                 Join us for our weekly events!
+               </div>
+
+               <div className="bento-box flex-1 w-full">
+                 Don't miss a beat!
+               </div>
+           </div>
+            }
           
-          <section className='font-fjalla text-primary'>
-            <div className='text-4xl mx-10 ml-0 my-10'>Upcoming Events</div>
-            {/* Slider for non-recurring events */}
-            <Slider events={upcomingEvents} />
-          </section>
+      
 
-          <section className="flex justify-start gap-2">
-            <div className="bento-box w-1/2">
-              Join us for our weekly events!
-            </div>
+        
+            </section>
+          </ScrollAnimation>
 
-            <div className="bento-box w-1/2">
-              Don't miss a beat!
-            </div>
-          </section>
 
-          <div className='text-4xl mx-10 ml-0 text-primary my-10'>Weekly Events</div>
-          {/* Slider for recurring events */}
-          <Slider className="my-20" events={weeklyEvents}/>
-        </div>
-      </section>
+            <div className='text-4xl mx-10 ml-0 text-primary my-10'>Weekly Events</div>
+            {/* Slider for recurring events */}
+            <ScrollAnimation><Slider className="my-20" events={weeklyEvents}/></ScrollAnimation>
+
+      
+       
+          </div>
+
+   
+        </section>
+      {/* </ScrollAnimation> */}
+     
     </main>
   );
 }

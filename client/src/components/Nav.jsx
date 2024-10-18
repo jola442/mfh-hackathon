@@ -18,9 +18,10 @@ const NavItems = ({isMobile}) => {
 
     const handleSignOut = async () => {
       try {
-          await axios.post('http://localhost:5000/logout', {}, { 
-              withCredentials: true, // Include cookies if needed
-          });
+          await axios.post('http://localhost:5000/logout', {}, 
+            // { 
+            //   withCredentials: true, // Include cookies if needed}
+            );
           setUser(null);
           localStorage.removeItem('user'); // Clear local storage if used
           navigate('/'); // Redirect to home or login page
