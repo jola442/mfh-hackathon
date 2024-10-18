@@ -41,6 +41,7 @@ const Admin = () => {
       console.log(response.data.message);
     } catch (error) {
       console.error('Error adding event:', error);
+      alert("Could not add event, check the form input again")
     }
   };
 

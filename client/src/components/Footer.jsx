@@ -2,7 +2,7 @@ import { FaFacebookF, FaInstagram, FaGlobe } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-white py-6">
+    <footer className="bg-primary m-20 text-white py-6">
       <div className="max-container flex flex-col md:flex-row items-center justify-around space-y-4 md:space-y-0">
         {/* Logo and Copyright */}
         <div className="flex items-center space-x-4">

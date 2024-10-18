@@ -3,6 +3,7 @@ import Calendar from 'react-calendar';
 import axios from 'axios';
 import { UserContext } from '../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
+import { FaCalendar } from 'react-icons/fa6';
 
 
 const EventCalendar = () => {
@@ -50,7 +51,8 @@ const EventCalendar = () => {
         <h3 className='text-xl text-bold mb-2'>Events on {value.toDateString()}:</h3>
         <ul className='list-none text-primary text-xl pl-5'>
           {events.filter(event => new Date(event.date).toDateString() === value.toDateString()).map(event => (
-            <li key={event._id} className='text-primary text-bold cursor-pointer hover:text-secondary transition-colors ease-in-out duration-300' onClick={() => navigate("/events/"+event._id)}>
+            <li key={event._id} className='text-primary text-bold cursor-pointer hover:text-secondary transition-colors ease-in-out duration-300 inline-flex' onClick={() => navigate("/events/"+event._id)}>
+              <FaCalendar className='mr-2'></FaCalendar>
               {event.name}
             </li>
           ))}
