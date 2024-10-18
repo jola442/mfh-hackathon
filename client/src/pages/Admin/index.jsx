@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
-import axios from "axios"
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import ScrollAnimation from '../../components/ScrollAnimation';
 
 const Admin = () => {
   const [name, setName] = useState('');
@@ -13,6 +14,7 @@ const Admin = () => {
   const [summary, setSummary] = useState('');
   const [description, setDescription] = useState('');
   const [isRecurring, setIsRecurring] = useState(false);
+  const quillRef = useRef(null); // Use ref for ReactQuill instance
   const navigate = useNavigate();
 
   const handleFileChange = (e) => {
@@ -34,8 +36,8 @@ const Admin = () => {
       const response = await axios.post('http://localhost:5000/events', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      alert("Added event successfully!")
-      navigate("/")
+      alert('Added event successfully!');
+      navigate('/');
       console.log(response.data.message);
     } catch (error) {
       console.error('Error adding event:', error);
@@ -43,109 +45,108 @@ const Admin = () => {
   };
 
   return (
-    <div className="flex justify-center w-full mb-[10vh]">
-      <div className="my-20 py-5 px-10 flex flex-col gap-2 w-1/2 max-lg:w-4/5">
-        <p className="text-primary text-4xl max-sm:text-3xl text-center w-full border-b-2 pb-2">
-          New Event
-        </p>
+    <ScrollAnimation>
+      <div className="flex justify-center w-full mb-[10vh]">
+        <div className="my-20 py-5 px-10 flex flex-col gap-2 w-1/2 max-lg:w-4/5">
+          <p className="text-primary text-4xl max-sm:text-3xl text-center w-full border-b-2 pb-2">
+            New Event
+          </p>
 
-        <label className="label" htmlFor="name">Event Name</label>
-        <input
-          id="name"
-          className="input-field"
-          type="text"
-          placeholder="Enter event name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-
-        <label className="label" htmlFor="location">Location</label>
-        <input
-          id="location"
-          className="input-field"
-          type="text"
-          placeholder="Enter event location"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-        />
-
-        <label className="label" htmlFor="fee">Fee</label>
-        <input
-          id="fee"
-          className="input-field"
-          type="number"
-          placeholder="Enter event fee"
-          value={fee}
-          onChange={(e) => setFee(e.target.value)}
-        />
-
-        <label className="label" htmlFor="date">Date and Time</label>
-        <input
-          id="date"
-          className="input-field"
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
-
-        
-        <label className="label" htmlFor="photo"> Event Photo</label>
-        <div className='photo-input-wrapper'>
+          <label className="label" htmlFor="name">Event Name</label>
           <input
-            id="photo"
-            className="text-2xl"
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
+            id="name"
+            className="input-field"
+            type="text"
+            placeholder="Enter event name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
-        </div>
-  
 
-        <label className="label" htmlFor="summary">Summary</label>
-        <input
-          id="summary"
-          className="input-field"
-          type="textarea"
-          placeholder="Enter event summary"
-          value={summary}
-          onChange={(e) => setSummary(e.target.value)}
-        />
-
-        <label className="label" htmlFor="description">Description</label>
-        <div>
-          <ReactQuill
-            id="description"
-            theme="snow"
-            value={description}
-            onChange={setDescription}
-            placeholder="Enter event description..."
-            className="custom-quill"
-          />
-        </div>
-  
-
-        <div className="flex items-center gap-2">
-          <label className="label" htmlFor="isRecurring">Recurring Event?</label>
+          <label className="label" htmlFor="location">Location</label>
           <input
-            id="isRecurring"
-            className="w-5 h-5"
-            type="checkbox"
-            checked={isRecurring}
-            onChange={(e) => setIsRecurring(e.target.checked)}
+            id="location"
+            className="input-field"
+            type="text"
+            placeholder="Enter event location"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
           />
-        </div>
 
-      <div>
-        <button
-            className="button bg-primary hover:bg-blue-500"
-            onClick={addEvent}
-          >
-            Add Event
-          </button>
+          <label className="label" htmlFor="fee">Fee</label>
+          <input
+            id="fee"
+            className="input-field"
+            type="number"
+            placeholder="Enter event fee"
+            value={fee}
+            onChange={(e) => setFee(e.target.value)}
+          />
+
+          <label className="label" htmlFor="date">Date and Time</label>
+          <input
+            id="date"
+            className="input-field"
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+
+          <label className="label" htmlFor="photo">Event Photo</label>
+          <div className="photo-input-wrapper">
+            <input
+              id="photo"
+              className="text-2xl"
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+            />
+          </div>
+
+          <label className="label" htmlFor="summary">Summary</label>
+          <input
+            id="summary"
+            className="input-field"
+            type="textarea"
+            placeholder="Enter event summary"
+            value={summary}
+            onChange={(e) => setSummary(e.target.value)}
+          />
+
+          <label className="label" htmlFor="description">Description</label>
+          <div>
+            <ReactQuill
+              id="description"
+              theme="snow"
+              value={description}
+              onChange={setDescription}
+              ref={quillRef} // Attach the ref to ReactQuill
+              placeholder="Enter event description..."
+              className="custom-quill"
+            />
+          </div>
+
+          <div className="flex items-center gap-2">
+            <label className="label" htmlFor="isRecurring">Recurring Event?</label>
+            <input
+              id="isRecurring"
+              className="w-5 h-5"
+              type="checkbox"
+              checked={isRecurring}
+              onChange={(e) => setIsRecurring(e.target.checked)}
+            />
+          </div>
+
+          <div>
+            <button
+              className="button bg-primary hover:bg-blue-500"
+              onClick={addEvent}
+            >
+              Add Event
+            </button>
+          </div>
+        </div>
       </div>
-    
-      </div>
-    </div>
+    </ScrollAnimation>
   );
 };
 
