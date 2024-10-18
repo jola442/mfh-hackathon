@@ -40,7 +40,7 @@ const ShareButton = () => {
       className="flex items-center text-3xl px-4 py-2 text-white transition-colors duration-300"
       onClick={handleShare}
     >
-      <FaShareSquare className="mr-2 text-primary font-bold"></FaShareSquare>
+      <FaShareSquare className="mr-2 text-primary font-bold hover:text-secondary transition-colors ease-linear duration-300"></FaShareSquare>
     </button>
     :<p className="flex items-center text-center">Shared!</p>}
     </>

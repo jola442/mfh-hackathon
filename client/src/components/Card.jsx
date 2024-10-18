@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
 import { UserContext } from '../contexts/UserContext'
 import ShareButton from './ShareButton'
@@ -7,6 +7,7 @@ import ShareButton from './ShareButton'
 const Card = ( {event}) => {
   const {_id, name, location, fee, date, photo} = event
   const {user, setUser} = useContext(UserContext);
+  const navigate = useNavigate();
   // console.log(event)
 
   const registerForEvent = async (e) => {
@@ -62,10 +63,10 @@ const Card = ( {event}) => {
           <p className='text-xl'>{fee == 0?"Free":"$"+fee}</p>
 
           <div className='flex justify-around'>
-            {!user && <p className='text-secondary text-xl'>Sign in to register </p>}
+            {!user && <div className='text-secondary text-xl flex justify-center items-center hover:text-primary transition-colors ease-in-out duration-300' onClick={(e) => {e.preventDefault();navigate("/signIn")}}>Sign in to register </div>}
             {/* flex items-center px-4 py-2 bg-blue-500 text-white rounded-md 
 hover:bg-blue-600 transition-colors duration-300 */}
-            <ShareButton className="button"></ShareButton>
+            <ShareButton></ShareButton>
             {user && !user.events.includes(_id) && <button className='button bg-primary hover:bg-blue-600' onClick={registerForEvent}>
               Register
             </button>}

@@ -120,7 +120,7 @@ body {
   }
 
   .desktop-nav a:hover{
-    @apply text-black transition-colors duration-300 ease-in-out
+    @apply text-secondary transition-colors duration-300 ease-in-out
   }
 
   .mobile-nav {
@@ -134,11 +134,11 @@ body {
   }
 
   .mobile-nav a {
-    @apply w-full px-6 py-3 lg:text-4xl md:text-[4vw] transition-colors duration-200 ease-in-out rounded-md font-fjalla;
+    @apply w-full px-6 py-3 lg:text-4xl md:text-[4vw] transition-colors duration-300 ease-in-out rounded-md font-fjalla;
   }
 
   .mobile-nav li:hover {
-    @apply bg-gray-200;
+    @apply bg-secondary;
   }
 
   .label{

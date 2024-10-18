@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { LuCalendarCheck2 } from "react-icons/lu";
 import { FaLocationDot } from "react-icons/fa6";
@@ -11,6 +11,7 @@ const Event = () => {
   const [event, setEvent] = useState(null); // State to hold event data
   const [loading, setLoading] = useState(true); // State to handle loading
   const { user, setUser } = useContext(UserContext); // Access user context
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -54,7 +55,7 @@ const Event = () => {
       const updatedUser = { ...user, events: updatedEvents };
       setUser(updatedUser);
       localStorage.setItem('user', JSON.stringify(updatedUser));
-      alert("Event added successfully!")
+     
     } catch (error) {
       console.error('Error updating user events', error);
     }
@@ -85,7 +86,7 @@ const Event = () => {
     <main className='relative background-overlay min-h-screen flex justify-center'>
       <section className='flex justify-center w-4/5 max-md:w-full'>
         <div className='flex flex-col justify-center items-center w-full p-10 max-sm:p-2'> 
-          <ScrollAnimation className="w-full">
+          <ScrollAnimation width="full">
             <div className="flex flex-1 justify-center my-10 w-full rounded-[50px] relative overflow-hidden">
               <div className="absolute inset-0 bg-primary bg-opacity-30 backdrop-blur-lg shadow-xl z-0"></div>
               <div className="w-3/4 flex justify-center z-[5]">
@@ -98,7 +99,7 @@ const Event = () => {
             </div>
           </ScrollAnimation>
   
-          <ScrollAnimation delay={0.2}>
+          <ScrollAnimation delay={0.2} width="full">
             <div className='flex flex-col flex-1 gap-4 self-start w-full'>
               <div className='flex justify-between w-full'>
                 <p className='text-[5vw] text-primary'>{event.name}</p>
@@ -109,14 +110,14 @@ const Event = () => {
                       <>
                         {!user.events.includes(event._id) ? (
                           <button
-                            className="bg-primary text-2xl max-lg:text-sm p-2 rounded-lg text-white w-[95%]"
+                            className="bg-primary text-2xl max-lg:text-sm p-2 rounded-lg text-white w-[95%] button hover:bg-blue-500"
                             onClick={registerForEvent}
                           >
                             Register
                           </button>
                         ) : (
                           <button
-                            className="bg-secondary text-2xl max-lg:text-sm p-2 rounded-lg text-white w-[95%]"
+                            className="bg-secondary text-2xl max-lg:text-sm p-2 rounded-lg text-white w-[95%] button hover:bg-red-500"
                             onClick={unRegisterForEvent}
                           >
                             Unregister
@@ -124,7 +125,7 @@ const Event = () => {
                         )}
                       </>
                     ) : (
-                      <p className='text-secondary text-xl'>Sign in to register</p>
+                      !user && <div className='text-secondary text-xl flex justify-center items-center hover:text-primary transition-colors ease-in-out duration-300' onClick={(e) => {e.preventDefault();navigate("/signIn")}}>Sign in to register </div>
                     )}
                   </div>
                 </div>

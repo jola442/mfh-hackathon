@@ -1,7 +1,6 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    bcrypt = require('bcrypt'),
-    SALT_WORK_FACTOR = 10;
+    bcrypt = require('bcrypt');
 
 let userSchema = Schema({
 	username: {
@@ -23,39 +22,29 @@ let userSchema = Schema({
 	events: [{type:Schema.Types.ObjectId, ref: 'Event'}],
 });
 
-userSchema.pre('save', function(next) {
-    var user = this;
-
-    // only hash the password if it has been modified (or is new)
-    if (!user.isModified('password')) return next();
-
-    // generate a salt
-    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-        if (err) return next(err);
-
-        // hash the password using our new salt
-        bcrypt.hash(user.password, salt, function(err, hash) {
-            if (err) return next(err);
-            // override the cleartext password with the hashed one
-            user.password = hash;
-            next();
-        });
-    });
-});
+// Pre-save middleware to hash the password before saving
+userSchema.pre('save', async function (next) {
+    if (!this.isModified('password')) return next();
+    try {
+      const salt = await bcrypt.genSalt(10);
+      this.password = await bcrypt.hash(this.password, salt);
+      next();
+    } catch (error) {
+      next(error);
+    }
+  });
+  
+  // Method to compare entered password with hashed password
+  userSchema.methods.comparePassword = function (password) {
+    return bcrypt.compare(password, this.password);
+  };
+  
 
 userSchema.pre('save', function (next) {
     this.events = [...new Set(this.events)]; // Ensure uniqueness before saving
     next();
   });
   
-     
-userSchema.methods.comparePassword = function(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-        if (err) return cb(err);
-        cb(null, isMatch);
-    });
-};
-
 userSchema.query.byUsername = function(username){
     return this.where({username: new RegExp(username, 'i')});
 }

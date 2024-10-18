@@ -49,10 +49,11 @@ async function respondWithUserEvents(req, res) {
       return res.status(404).json({ message: `User '${username}' not found` });
     }
 
-    // Map the populated events to extract only names and dates
+    // Map the populated events to extract only ids, names and dates
     const userEvents = user.events.map(event => ({
-      name: event.name, // Assuming the event model has a 'name' field
-      date: event.date, // Assuming the event model has a 'date' field
+      _id: event._id,
+      name: event.name,
+      date: event.date,
     }));
 
     res.status(200).json(userEvents); // Send back the list of event names and dates
