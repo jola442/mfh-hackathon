@@ -1,6 +1,8 @@
 # 📅 MFH Events Management App  
 
 This is a **responsive events management web application** built for **myFather’s House** during the **MFH YA Hackathon 2024**. The app simplifies event management for both administrators and members, ensuring better communication and engagement within the church community.  
+<img width="959" alt="image" src="https://github.com/user-attachments/assets/5d77f26a-b051-4aa6-a642-6845a7c168c9">
+
 
 ## 🎥 Demo  
 Check out the live demo and walkthrough of the project:  
@@ -62,4 +64,4 @@ Ensure you have the following installed:
     npm run dev
   ```
 4.  **Open the application**
-   - Go to your browser and open https://localhost:3000
+   - Go to your browser and open https://localhost:5173
