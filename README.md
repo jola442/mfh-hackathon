@@ -1,7 +1,8 @@
 # 📅 MFH Events Management App  
 
 This is a **responsive events management web application** built for **myFather’s House** during the **MFH YA Hackathon 2024**. The app simplifies event management for both administrators and members, ensuring better communication and engagement within the church community.  
-<img width="959" alt="image" src="https://github.com/user-attachments/assets/5d77f26a-b051-4aa6-a642-6845a7c168c9">
+<img width="958" alt="mfh_events" src="https://github.com/user-attachments/assets/076a4808-fa4a-40a0-ba6d-f13ddab00d6c">
+
 
 
 ## 🎥 Demo  
