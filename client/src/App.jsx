@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import Event from './pages/Event';
 import Admin from './pages/Admin';
+import EventPage from './pages/EventPage';
 import { useEffect, useState } from 'react';
 import { UserContext } from './contexts/UserContext';
 import Footer from './components/Footer';
@@ -34,6 +35,7 @@ function App() {
         <Route path="/signIn" element={<SignIn/>}></Route>
         <Route path="/events/:id" element={<Event/>}></Route>
         <Route path="/admin" element={<Admin/>}></Route>
+        <Route path="/eventPage" element={<EventPage/>}></Route>
       </Routes>
       <Footer></Footer>
     </UserContext.Provider>

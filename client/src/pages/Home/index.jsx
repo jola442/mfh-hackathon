@@ -5,39 +5,42 @@ import ScrollAnimation from '../../components/ScrollAnimation';
 import { UserContext } from '../../contexts/UserContext';
 import EventCalendar from '../../components/EventCalendar';
 import 'react-calendar/dist/Calendar.css';
+import Card from '../../components/Card';
+import EventCard from '../../components/EventCard';
 
 function Home() {
   const [events, setEvents] = useState([]);
   const { user } = useContext(UserContext)
 
   // Fetch events from the API
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/events"); // Adjust the URL as needed
-        setEvents(response.data); // Assuming response.data contains the array of events
-      } catch (error) {
-        console.error("Error fetching events:", error);
-      }
-    };
-
-    fetchEvents();
-  }, []); // Empty dependency array to run only on mount
+  //useEffect(() => {
+  //  const fetchEvents = async () => {
+  //    try {
+  //      const response = await axios.get("http://localhost:5000/events"); // Adjust the URL as needed
+  //      setEvents(response.data); // Assuming response.data contains the array of events
+  //    } catch (error) {
+  //      console.error("Error fetching events:", error);
+  //    }
+  //  };
+//
+  //  fetchEvents();
+  //}, []); // Empty dependency array to run only on mount
 
   // Format event dates and filter recurring and non-recurring events
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   
   // Create a new array with formatted dates
-  const formattedEvents = events.map(event => ({
-    ...event,
-    date: new Date(event.date).toLocaleDateString('en-US', options)
-  }));
+  //const formattedEvents = events.map(event => ({
+  //  ...event,
+  //  date: new Date(event.date).toLocaleDateString('en-US', options)
+  //}));
 
   // Filter events
-  const upcomingEvents = formattedEvents.filter(event => !event.isRecurring);
-  const weeklyEvents = formattedEvents.filter(event => event.isRecurring);
+  //const upcomingEvents = formattedEvents.filter(event => !event.isRecurring);
+  //const upcomingEvents = []
+  //const weeklyEvents = formattedEvents.filter(event => event.isRecurring);
   
-  console.log("Weekly", weeklyEvents);
+  //console.log("Weekly", weeklyEvents);
 
    // Define fade-in animation variants
    const fadeIn = {
@@ -63,16 +66,16 @@ function Home() {
             animate="visible"
             transition={{ duration: 0.5, delay: 0.2, ease: "easeInOut"}} // Duration of the fade-in
             variants={fadeIn}><Slider events={upcomingEvents} /></motion.div> */}
-            <ScrollAnimation delay={0.5}><Slider events={upcomingEvents}></Slider></ScrollAnimation>
+            <div><EventCard eventName={'Valentines Gala'} date={'14th February 2025'}/></div>
             </section>
 
           <ScrollAnimation>
           <section className="flex gap-5 max-sm:flex-col">
-            {user && <div className='relative h-full max-sm:flex-1 max-sm:w-full w-[35%] font-fjalla'>
+              <div className='relative h-full max-sm:flex-1 max-sm:w-full w-[35%] font-fjalla'>
                 <EventCalendar></EventCalendar>
                 </div>
-          }
-            {user?  <div className='flex flex-col flex-1 justify-between gap-5'>
+          
+              <div className='flex flex-col flex-1 justify-between gap-5'>
               <div className="bento-box flex-1 w-full">
                   Join us for our weekly events!
                 </div>
@@ -80,34 +83,17 @@ function Home() {
                 <div className="bento-box flex-1 w-full">
                   Don't miss a beat!
                 </div>
-            </div>:
-             <div className='flex flex-1 justify-between gap-5 w-full'>
-             <div className="bento-box flex-1 w-full">
-                 Join us for our weekly events!
-               </div>
-
-               <div className="bento-box flex-1 w-full">
-                 Don't miss a beat!
-               </div>
-           </div>
-            }
-          
-      
-
-        
+            </div>
             </section>
           </ScrollAnimation>
 
 
             <div className='text-4xl mx-10 ml-0 text-primary my-10'>Weekly Events</div>
             {/* Slider for recurring events */}
-            <ScrollAnimation><Slider className="my-20" events={weeklyEvents}/></ScrollAnimation>
+            <ScrollAnimation><Slider className="my-20" events={[]}/></ScrollAnimation>
 
-      
-       
           </div>
 
-   
         </section>
       {/* </ScrollAnimation> */}
      
