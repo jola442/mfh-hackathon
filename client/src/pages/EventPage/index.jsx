@@ -8,7 +8,7 @@ const EventPage = () => {
     const {eventName, date, photo} = location.state 
     console.log(photo)
     const handleClick = () => {
-      window.location.href = "https://mfhyoungadults.fillout.com/t/pVZgPJJLMRus";
+      window.location.href = "https://mfhyoungadults.fillout.com/valentines-day-gala";
     };
   
   return (
