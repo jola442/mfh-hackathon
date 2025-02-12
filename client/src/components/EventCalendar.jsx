@@ -1,36 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useState } from 'react';
 import Calendar from 'react-calendar';
-import axios from 'axios';
-import { UserContext } from '../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { FaCalendar } from 'react-icons/fa6';
-
+import { events } from '../constants';
 
 const EventCalendar = () => {
-  const { user } = useContext(UserContext); // Access user context
-  const [events, setEvents] = useState([]);
-  const [value, setValue] = useState(new Date()); // State to track selected date
+  const [value, setValue] = useState(new Date());
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-    if (user) {
-        try {
-          let requestURL = `http://localhost:5000/users/${user.username}/events`
-          console.log(requestURL)
-          const response = await axios.get(requestURL);
-          setEvents(response.data); // Assuming the response contains an array of events
-        } catch (error) {
-          console.error("Error fetching user's events:", error);
-        }
-      }
-    };
 
-    fetchEvents();
-  }, [user]);
-
-  // Convert event dates to a more usable format for calendar
-  const eventDates = events.map(event => (new Date(event.date).toDateString()));
+  const upcomingEvents = events.filter((event)=>!event.recurring)
+  const eventDates = upcomingEvents.map(event => (event.date).toDateString());
   console.log(eventDates)
 
   return (
@@ -50,14 +30,14 @@ const EventCalendar = () => {
       <div className='mt-4 w-full'>
         <h3 className='text-xl text-bold mb-2'>Events on {value.toDateString()}:</h3>
         <ul className='list-none text-primary text-xl pl-5'>
-          {events.filter(event => new Date(event.date).toDateString() === value.toDateString()).map(event => (
-            <li key={event._id} className='text-primary text-bold cursor-pointer hover:text-secondary transition-colors ease-in-out duration-300 inline-flex' onClick={() => navigate("/events/"+event._id)}>
+          {upcomingEvents.filter(event => new Date(event.date).toDateString() === value.toDateString()).map(event => (
+            <li key={event._id} className='text-primary text-bold cursor-pointer hover:text-secondary transition-colors ease-in-out duration-300 inline-flex' onClick={() => navigate("/events/"+event.name)}>
               <FaCalendar className='mr-2'></FaCalendar>
               {event.name}
             </li>
           ))}
         </ul>
-        {events.filter(event => new Date(event.date).toDateString() === value.toDateString()).length === 0 && (
+        {upcomingEvents.filter(event => new Date(event.date).toDateString() === value.toDateString()).length === 0 && (
           <p className='text-gray-500'>No events for this date.</p>
         )}
       </div>

@@ -1,44 +1,13 @@
-import { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
 import Slider from '../../components/Slider';
 import ScrollAnimation from '../../components/ScrollAnimation';
-import { UserContext } from '../../contexts/UserContext';
 import EventCalendar from '../../components/EventCalendar';
 import 'react-calendar/dist/Calendar.css';
+import { events } from '../../constants';
+ // Filter events
+ const upcomingEvents = events.filter(event => !event.recurring);
+ const weeklyEvents = events.filter(event => event.recurring);
 
 function Home() {
-  const [events, setEvents] = useState([]);
-  const { user } = useContext(UserContext)
-
-  // Fetch events from the API
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/events"); // Adjust the URL as needed
-        setEvents(response.data); // Assuming response.data contains the array of events
-      } catch (error) {
-        console.error("Error fetching events:", error);
-      }
-    };
-
-    fetchEvents();
-  }, []); // Empty dependency array to run only on mount
-
-  // Format event dates and filter recurring and non-recurring events
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  
-  // Create a new array with formatted dates
-  const formattedEvents = events.map(event => ({
-    ...event,
-    date: new Date(event.date).toLocaleDateString('en-US', options)
-  }));
-
-  // Filter events
-  const upcomingEvents = formattedEvents.filter(event => !event.isRecurring);
-  const weeklyEvents = formattedEvents.filter(event => event.isRecurring);
-  
-  console.log("Weekly", weeklyEvents);
-
    // Define fade-in animation variants
    const fadeIn = {
     hidden: { opacity: 0 },
@@ -68,11 +37,11 @@ function Home() {
 
           <ScrollAnimation>
           <section className="flex gap-5 max-sm:flex-col">
-            {user && <div className='relative h-full max-sm:flex-1 max-sm:w-full w-[35%] font-fjalla'>
+            <div className='relative h-full max-sm:flex-1 max-sm:w-full w-[35%] font-fjalla'>
                 <EventCalendar></EventCalendar>
                 </div>
-          }
-            {user?  <div className='flex flex-col flex-1 justify-between gap-5'>
+          
+            <div className='flex flex-col flex-1 justify-between gap-5'>
               <div className="bento-box flex-1 w-full">
                   Join us for our weekly events!
                 </div>
@@ -80,21 +49,7 @@ function Home() {
                 <div className="bento-box flex-1 w-full">
                   Don't miss a beat!
                 </div>
-            </div>:
-             <div className='flex flex-1 justify-between gap-5 w-full'>
-             <div className="bento-box flex-1 w-full">
-                 Join us for our weekly events!
-               </div>
-
-               <div className="bento-box flex-1 w-full">
-                 Don't miss a beat!
-               </div>
-           </div>
-            }
-          
-      
-
-        
+            </div>
             </section>
           </ScrollAnimation>
 

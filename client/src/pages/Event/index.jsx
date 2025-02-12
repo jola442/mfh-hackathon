@@ -5,82 +5,15 @@ import { LuCalendarCheck2 } from "react-icons/lu";
 import { FaLocationDot } from "react-icons/fa6";
 import ScrollAnimation from '../../components/ScrollAnimation';
 import { UserContext } from '../../contexts/UserContext';
+import { events } from '../../constants';
 
 const Event = () => {
   const { id } = useParams(); // Get the event ID from URL parameters
-  const [event, setEvent] = useState(null); // State to hold event data
-  const [loading, setLoading] = useState(true); // State to handle loading
-  const { user, setUser } = useContext(UserContext); // Access user context
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchEvent = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/events/${id}`);
-        setEvent(response.data); 
-      } catch (error) {
-        console.error("Error fetching event:", error);
-      } finally {
-        setLoading(false); // Set loading to false after fetching
-      }
-    };
-
-    fetchEvent();
-  }, [id]); // Dependency array includes id to re-run effect if id changes
-
-  if (loading) {
-    return <div>Loading...</div>; // Loading state
-  }
-
-  if (!event) {
-    return <div>No event found</div>; // Handle case when no event is found
-  }
+  const event = events.find( (elem) => elem.name === id)
 
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   const formattedDate = new Date(event.date).toLocaleDateString('en-US', options);
-
-  const registerForEvent = async (e) => {
-    e.preventDefault();
-    if (!user) return; // Check if the user is logged in
-    const updatedEvents = [...user.events, event._id]; // Create a new array with the registered event
-
-    try {
-      const response = await axios.put(
-        `http://localhost:5000/users/${user.username}/events`,
-        { events: updatedEvents }
-      );
-      console.log(response.data);
-
-      // Create a new user object with updated events and set it in state
-      const updatedUser = { ...user, events: updatedEvents };
-      setUser(updatedUser);
-      localStorage.setItem('user', JSON.stringify(updatedUser));
-     
-    } catch (error) {
-      console.error('Error updating user events', error);
-    }
-  };
-
-  const unRegisterForEvent = async (e) => {
-    e.preventDefault();
-    if (!user) return; // Check if the user is logged in
-    const updatedEvents = user.events.filter((eventId) => eventId !== event._id); // Filter out the unregistered event
-
-    try {
-      const response = await axios.put(
-        `http://localhost:5000/users/${user.username}/events`,
-        { events: updatedEvents }
-      );
-      console.log(response.data);
-
-      // Create a new user object with updated events and set it in state
-      const updatedUser = { ...user, events: updatedEvents };
-      setUser(updatedUser);
-      localStorage.setItem('user', JSON.stringify(updatedUser));
-    } catch (error) {
-      console.error('Error updating user events', error);
-    }
-  };
 
   return (
     <main className='relative background-overlay min-h-screen flex justify-center'>
@@ -92,7 +25,7 @@ const Event = () => {
               <div className="w-3/4 flex justify-center z-[5]">
                 <img
                   className="w-full h-[45vh] object-cover rounded-[30px]"
-                  src={event.photo.startsWith("src") ? "/" + event.photo : event.photo}
+                  src={event.poster.startsWith("src") ? "/" + event.poster : event.poser}
                   alt="Event Poster"
                 />
               </div>
@@ -106,27 +39,15 @@ const Event = () => {
                 <div className='shadow-lg p-3 rounded-xl flex flex-col overflow-hidden justify-around items-center w-[40%]'>
                   <p className='label'>{event.fee === 0 ? "Free" : "$" + event.fee}</p>
                   <div className='flex justify-center w-full'>
-                    {user ? (
+         
                       <>
-                        {!user.events.includes(event._id) ? (
-                          <button
+
+                          {!event.recurring &&<button
                             className="bg-primary text-2xl max-lg:text-sm p-2 rounded-lg text-white w-[95%] button hover:bg-blue-500"
-                            onClick={registerForEvent}
                           >
                             Register
-                          </button>
-                        ) : (
-                          <button
-                            className="bg-secondary text-2xl max-lg:text-sm p-2 rounded-lg text-white w-[95%] button hover:bg-red-500"
-                            onClick={unRegisterForEvent}
-                          >
-                            Unregister
-                          </button>
-                        )}
+                          </button>}
                       </>
-                    ) : (
-                      !user && <div className='text-secondary text-xl flex justify-center items-center hover:text-primary transition-colors ease-in-out duration-300' onClick={(e) => {e.preventDefault();navigate("/signIn")}}>Sign in to register </div>
-                    )}
                   </div>
                 </div>
               </div>
@@ -135,7 +56,7 @@ const Event = () => {
               <p className='label'>Date and time</p>
               <div className='flex gap-2 text-[2vw] text-primary'>
                 <LuCalendarCheck2 className='text-[2vw] max-lg:text-[20px]'/>
-                <p className="text-[2vw] max-lg:text-[20px]">{formattedDate}</p>
+                <p className="text-[2vw] max-lg:text-[20px]">{event.date instanceof Date? formattedDate:event.date}</p>
               </div>
               <p className='label'>Location</p>
               <div className='flex gap-2 text-[2vw] max-lg:text-[20px] text-primary'>
@@ -144,7 +65,7 @@ const Event = () => {
               </div>
               <p className='label'>About this event</p>
               <p
-                className='text-xl text-ellipsis whitespace-normal max-h-40'
+                className='text-xl text-ellipsis whitespace-normal'
                 dangerouslySetInnerHTML={{ __html: event.description }}
               ></p>
             </div>
