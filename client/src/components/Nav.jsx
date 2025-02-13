@@ -35,7 +35,7 @@ const Nav = () => {
         <header className="relative padding-x py-8 z-10 w-full">
           <nav className="flex justify-between items-center max-container w-full">
             <a href="/">
-              <img src={rccgLogo} alt="Logo" className='w-24'/>
+              <img src={rccgLogo} alt="Logo" className='lg:w-24 w-16'/>
             </a>  
             <NavItems isMobile={false} />
 
