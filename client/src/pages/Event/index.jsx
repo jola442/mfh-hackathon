@@ -1,15 +1,11 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import { LuCalendarCheck2 } from "react-icons/lu";
 import { FaLocationDot } from "react-icons/fa6";
 import ScrollAnimation from '../../components/ScrollAnimation';
-import { UserContext } from '../../contexts/UserContext';
 import { events } from '../../constants';
 
 const Event = () => {
   const { id } = useParams(); // Get the event ID from URL parameters
-  const navigate = useNavigate();
   const event = events.find( (elem) => elem.name === id)
 
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -25,7 +21,7 @@ const Event = () => {
               <div className="w-3/4 flex justify-center z-[5]">
                 <img
                   className="w-full h-[45vh] object-cover rounded-[30px]"
-                  src={event.poster.startsWith("src") ? "/" + event.poster : event.poser}
+                  src={event.poster}
                   alt="Event Poster"
                 />
               </div>

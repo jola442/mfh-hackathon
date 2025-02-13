@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import rccgLogo from "../assets/images/rccgLogo.png"
-import { hamburger } from "../assets/icons"
+import rccgLogo from "../../public/assets/images/rccgLogo.png"
 import { navLinks } from '../constants'
 import { FaBars, FaTimes } from "react-icons/fa"
 import { useNavigate } from 'react-router-dom'

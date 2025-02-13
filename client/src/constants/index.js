@@ -1,6 +1,4 @@
-import { facebook, instagram, shieldTick, support, truckFast, twitter } from "../assets/icons";
-
-export const navLinks = [
+ export const navLinks = [
     { href: "/", label: "Home" },
     // { href: "/admin", label: "Admin"},
     // { href: "/signIn", label: "Sign In" },
@@ -12,7 +10,7 @@ export const events = [
         location: "1724 Bank Street", 
         date: new Date(2025, 1, 14), 
         fee: 0, 
-        poster: "src/assets/images/valentine_gala.jpg", 
+        poster: "/assets/images/valentine_gala.jpg", 
         recurring: false, 
         summary: "A glamorous evening of love and celebration, with games, food, and a Q&A for couples!",
         description: `Hey fam 👋🏽<br /><br />
@@ -40,7 +38,7 @@ See you there!`
         location: "1724 Bank St", 
         date: "Every Friday", 
         fee: 0, 
-        poster: "src/assets/images/youth_hangout.jpg", 
+        poster: "/assets/images/youth_hangout.jpg", 
         recurring: true, 
         summary: "Join us every Friday for a fun hangout session, connecting with others and learning about Emotional Intelligence!",
         description: `Hey y’all! 👋🏽<br /><br />
@@ -60,7 +58,7 @@ You can also find the weekly resources on our website every Sunday morning! ☀ 
         location: "1724 Bank St", 
         date: "Every Wednesday", 
         fee: 0, 
-        poster: "src/assets/images/weekly_prayers.jpg", 
+        poster: "/assets/images/weekly_prayers.jpg", 
         recurring: true, 
         summary: "Join us for mid-week prayer and spiritual growth every Wednesday.",
         description: `Gather with us every Wednesday for a time of prayer and reflection. We’ll be praying for personal growth, strength, and guidance for the week ahead. Whether you're a regular or new to the community, we welcome you to join us for an uplifting and peaceful time together.<br /><br />
@@ -71,7 +69,7 @@ You can also find the weekly resources on our website every Sunday morning! ☀ 
         location: "1724 Bank St", 
         date: "Every Saturday", 
         fee: 0, 
-        poster: "src/assets/images/weekly_prayers.jpg", 
+        poster: "/assets/images/weekly_prayers.jpg", 
         recurring: true, 
         summary: "Every Saturday, we come together for a time of prayer and fellowship.",
         description: `Every Saturday, come join us for an inspiring time of prayer and fellowship. This is a wonderful opportunity to reflect, connect with others, and recharge spiritually for the week ahead. Everyone is welcome to share in this sacred time with us.<br /><br />
@@ -82,7 +80,7 @@ You can also find the weekly resources on our website every Sunday morning! ☀ 
         location: "1724 Bank St", 
         date: "Every Friday", 
         fee: 0, 
-        poster: "src/assets/images/children_connect.jpg", 
+        poster: "/assets/images/children_connect.jpg", 
         recurring: true, 
         summary: "A safe, fun, and engaging space for kids to grow spiritually every Friday!",
         description: `Every Friday, we create a fun, safe, and engaging space for children to grow spiritually. With games, stories, and hands-on activities, the Children's Connect Group helps kids build strong foundations of faith and friendship.<br /><br />
