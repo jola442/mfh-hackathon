@@ -11,7 +11,6 @@ const EventCalendar = () => {
 
   const upcomingEvents = events.filter((event)=>!event.recurring)
   const eventDates = upcomingEvents.map(event => (event.date).toDateString());
-  console.log(eventDates)
 
   return (
     <div className='calendar-wrapper flex flex-col items-center p-4 bg-gray-100 rounded-lg shadow-md w-full h-full'>

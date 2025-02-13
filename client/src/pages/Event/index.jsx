@@ -4,12 +4,18 @@ import { FaLocationDot } from "react-icons/fa6";
 import ScrollAnimation from '../../components/ScrollAnimation';
 import { events } from '../../constants';
 
+
+
 const Event = () => {
   const { id } = useParams(); // Get the event ID from URL parameters
   const event = events.find( (elem) => elem.name === id)
-
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   const formattedDate = new Date(event.date).toLocaleDateString('en-US', options);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    window.location.href = event.formLink;
+  };
 
   return (
     <main className='relative background-overlay min-h-screen flex justify-center'>
@@ -40,6 +46,7 @@ const Event = () => {
 
                           {!event.recurring &&<button
                             className="bg-primary text-2xl max-lg:text-sm p-2 rounded-lg text-white w-[95%] button hover:bg-blue-500"
+                            onClick={handleClick}
                           >
                             Register
                           </button>}
