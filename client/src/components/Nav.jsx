@@ -9,6 +9,7 @@ const NavItems = ({isMobile}) => {
     const navigate = useNavigate();
 
     return (
+      <>
         <ul className={isMobile?"mobile-nav": "desktop-nav"}>
         {navLinks.map( (item) => {
             return <li key={item.label}>
@@ -19,7 +20,9 @@ const NavItems = ({isMobile}) => {
             }
           )}
     
-    </ul>
+        </ul>
+      </>
+
     )
 }
 
@@ -32,11 +35,10 @@ const Nav = () => {
         <header className="relative padding-x py-8 z-10 w-full">
           <nav className="flex justify-between items-center max-container w-full">
             <a href="/">
-              <img src={rccgLogo} alt="Logo" width={120} height={100} />
-            </a>
-    
+              <img src={rccgLogo} alt="Logo" className='w-24'/>
+            </a>  
             <NavItems isMobile={false} />
-    
+
             <div className="hidden max-lg:block">
               {isOpen ? (
                 <FaTimes className="w-10 h-10 text-primary" onClick={toggleMenu} />
@@ -55,4 +57,4 @@ const Nav = () => {
   )
 }
 
-export default Nav
+export default Nav  
