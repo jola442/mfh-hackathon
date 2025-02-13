@@ -7,7 +7,7 @@ const Footer = () => {
         {/* Logo and Copyright */}
         <div className="flex items-center space-x-4">
           <img
-            src={"/src/assets/images/rccgLogo.png"}
+            src={"assets/images/rccgLogo.png"}
             alt="RCCG Logo"
             width={50}
             height={50}
